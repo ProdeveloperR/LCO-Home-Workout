@@ -8,8 +8,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import registerRootComponent from 'expo/build/launch/registerRootComponent'
 import Home from './Screens/Home'
 import Feed from './Screens/Feed'
-const Drawer = createStackNavigator()
+const Stack = createStackNavigator()
 export default class App extends React.Component {
+  componentDidCatch(error, errorInfo) {
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, errorInfo);
+  }
   render() {
     return (
       <Navigation />
@@ -20,12 +24,12 @@ class Navigation extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Home" component={Home} options={{
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} options={{
             headerShown: false,
           }} />
-          <Drawer.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
-        </Drawer.Navigator>
+          <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }

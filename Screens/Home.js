@@ -3,7 +3,7 @@ import { SafeAreaView, Text, StyleSheet, View, ImageBackground, TouchableOpacity
 import { Button } from 'react-native-paper'
 export default class Home extends Component {
     start = () => {
-        this.props.navigation.navigate('Feed')
+        this.props.navigation.replace('Feed', {})
     }
     render() {
         return (

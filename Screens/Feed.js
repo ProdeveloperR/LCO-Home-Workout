@@ -40,6 +40,7 @@ export default class Feed extends Component {
         Speech.speak(job.name)
         try {
             await soundObject.playAsync();
+            soundObject.setIsLoopingAsync(true)
         } catch (e) {
             Alert.alert(e.message)
         }
@@ -53,7 +54,7 @@ export default class Feed extends Component {
             setTimeout(() => {
                 //WHEN FINISHED BREAK EXECUTE THIS FUNCTION
                 this.start()
-            }, 4000)//40000
+            }, 40000)//40000
             try {
                 await soundObject.stopAsync();
             } catch (e) {
@@ -61,7 +62,7 @@ export default class Feed extends Component {
             }
             //THIS TIME IS FINISHED THEN ALERT 'BREAK TIME'
             // (job.time !== null) ? job.time * 60000 :
-        }, 6000)//60000
+        }, (job.time !== null) ? job.time * 60000 : 6000)//60000
     }
     componentDidUpdate() {
         this.break()
@@ -82,10 +83,11 @@ export default class Feed extends Component {
                                                     (job.name === 'Dumbbell') ? require('../assets/Icons/Dumbbell.png') :
                                                         (job.name === 'Dumbells-Pushup') ? require('../assets/Icons/Dumbells-PushUps.png') :
                                                             (job.name === 'Rowing') ? require('../assets/Icons/Rowing.png') :
-                                                                (job.name === ' Stand-still') ? require('../assets/Icons/Stand-still.png') :
+                                                                (job.name === 'Stand-still') ? require('../assets/Icons/Stand-still.png') :
                                                                     (job.name === 'Leg-Swissball') ? require('../assets/Icons/Leg-Swissball.png') :
                                                                         ''} />
                             <Text style={styles.name}>{job.name}</Text>
+                            <Text style={{ fontSize: 10, color: '#ffffff', marginHorizontal: 5, }}>{job.sets}</Text>
                             <Ionicons name={logoName} size={30} color="white" style={{ textAlign: 'right' }} />
                         </Card>
                     </View>
